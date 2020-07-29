@@ -1,6 +1,3 @@
-### Kattis Problems
-Solutions to most of the problems i've completed through Kattis
-
 #### Information
 |  Ord. | File | Description & Links  |
 |---|---|---|
@@ -13,3 +10,5 @@ Solutions to most of the problems i've completed through Kattis
 | 7 | [Mandlebrot](https://github.com/fr3632ho/various/blob/master/src/medium/mandelbrot/mandelbrot.py) | Determine if a number *c* is in the mandelbrot set or not. |
 | 8 | [Tarjans Algorithm for strongly connected components](https://github.com/fr3632ho/various/blob/master/src/medium/others/tarjan_scc.py)  |  Done more for the sake of learning the procedure of the algorithm and not as a correct implementation. Not tested. |
 | 9 | [Dijkstras shortest path algorithm](https://github.com/fr3632ho/various/blob/master/src/medium/others/dijkstra.py)   | Implementation just for the sake of learning the algorithm. Tested in other various problems and works.  |
+
+
