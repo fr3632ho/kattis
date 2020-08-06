@@ -39,16 +39,16 @@ public class SPFA {
       // Perform SPFA
       int[] distances = shortestFasterPath(map, s);
 
+      // Setup answer dict
+      Map<Integer, String> answer = new HashMap<>();
+      answer.put(-inf, "-Infinity"); answer.put(inf, "Impossible");
       for(int i=0; i<q; i++){
         int query = Integer.parseInt(scan.readLine());
         u = distances[query];
-        if(u == -inf){
-          System.out.println("-Infinity");
-        } else if(u == inf){
-          System.out.println("Impossible");
-        } else {
-          System.out.println(u);
-        }
+        System.out.println(answer.getOrDefault((
+           u*(u==-inf ? 1 : 0)) +
+           u*(u==inf ? 1 : 0),
+           Integer.toString(u))); // Branchless expression
       }
 
       line = scan.readLine().split(" ");
@@ -118,7 +118,7 @@ public class SPFA {
       if (visits[j] == n) DFS(map, j, visited);
 
     for(int h=0; h<n; h++)
-      if(visited[h]) dist[h] = -inf;
+      dist[h] = -inf*(visited[h] ? 1 : 0) + dist[h]*(visited[h] ? 0 : 1);
 
     return dist;
   }
