@@ -8,9 +8,8 @@ def BFS(G, start):
     '''
     Returns index of node and longest path
     '''
-    #print(start)
     n = len(visited)
-    dist = [-1]*n # This will be slow
+    dist = defaultdict(lambda:-1) # This was a nice fix as a replacement for the list
     dist[start] = 0
     furthest = 0
     furthest_index = start
@@ -33,32 +32,12 @@ def BFS(G, start):
 
 def get_longest(G, start):
     '''
-    Longest path for each sub-net
+    Longest path for each sub-net.
+    Will
     '''
     s = BFS(G, start)
     t = BFS(G, s[1])
     return t[0]
-
-def find(d, a):
-    root = a
-    while root != d[root] and d[root] != -1:
-        root = d[root]
-    while a != root:
-        _p = d[a]
-        d[a] = root
-        a = _p
-    return root
-
-def join(d, a, b):
-    '''
-    Join two nodes
-    '''
-
-    a = find(d, a)
-    b = find(d, b)
-    if a==b:
-        return
-    d[a] = b # set parent
 
 def main():
     global visited
@@ -70,20 +49,11 @@ def main():
     for i in range(l):
         u, v  = map(int, input().split())
         G[u].append(v), G[v].append(u)
-        join(d, u, v)
 
     lengths = []
     for i in range(c):
         if not visited[i]:
-            if d[i] != -1:
-                lengths.append(get_longest(G, i))
-            if not G[i]:
-                lengths.append(0)
-
-    #print(lengths)
-    # if not lengths:
-    #     print(2)
-    #     return
+            lengths.append(get_longest(G, i))
 
     lengths.sort()
     while len(lengths) > 1:
