@@ -1,135 +1,125 @@
 import sys
-from collections import defaultdict, deque
+from collections import deque
 
-no = "IMPOSSIBLE"
-WALL = "#"
-FIRE = "F"
-START = "J"
-SPACE = "."
-start_index = -1
-INF = 10000000
+JOE = 'J'
+FIRE = 'F'
+WALL = '#'
+SPACE = '.'
 
-def escape_dists_fire(G, start, exits, distances):
-    visited = dict() # Replace with dict
-    Q = deque([(start, 1)])
-    while Q:
-        u, dist = Q.pop()
+class Graph:
 
-        if u in visited:
-            continue
+    def __init__(self, r, c, matrix):
+        self.visited = [[False]*c for _ in range(r)]
+        self.r, self.c = r, c
+        self.mat = matrix
+        self.joe, self.fires = self.find_initials()
+        self.joe_start = (self.joe[0][0], self.joe[0][1])
 
-        if u in exits:
-            if u not in distances:
-                distances[u] = INF
-            distances[u] = min(distances[u], dist)
+    def is_exit(self, y, x):
+        return x == 0 or x == self.c - 1 or y == 0 or y == self.r - 1
+
+    def ok_move(self, y, x):
+        return not self.visited[y][x] and self.mat[y][x] == SPACE
+
+    def find_initials(self):
+        '''
+        Returns a fire & joe queue
+        '''
+        joe, fires = deque(), deque()
+        for _r in range(self.r):
+            for _c in range(self.c):
+                curr = self.mat[_r][_c]
+                if curr == JOE:
+                    joe.append((_r, _c))
+                    self.visited[_r][_c] = True
+                if curr == FIRE:
+                    fires.append((_r, _c))
+                    self.visited[_r][_c] = True
+
+        return joe, fires
+
+    def joe_round(self):
+        '''
+        One round of joe moving in many directions
+        '''
+        tmp_queue = deque()
+
+        while self.joe:
+            y, x = self.joe.pop()
+            if x > 0 and self.ok_move(y, x - 1): # left and check exit
+                if x - 1 == 0:
+                    return True
+                self.visited[y][x - 1] = True
+                tmp_queue.appendleft((y, x - 1))
+
+            if x < self.c - 1 and self.ok_move(y, x + 1): # right and check exit
+                if x + 1 == self.c - 1:
+                    return True
+                self.visited[y][x + 1] = True
+                tmp_queue.appendleft((y, x + 1))
+
+            if y > 0 and self.ok_move(y - 1, x): # up and check exit
+                if y - 1 == 0:
+                    return True
+                self.visited[y - 1][x] = True
+                tmp_queue.appendleft((y - 1, x))
+
+            if y < self.r - 1 and self.ok_move(y + 1, x): # down and check exit
+                if y + 1 == self.r - 1:
+                    return True
+                self.visited[y + 1][x] = True
+                tmp_queue.appendleft((y + 1, x))
+
+        self.joe = tmp_queue
+        return False
 
 
-        visited[u] = 1
-        for n in G[u]:
-            if n not in visited:
-                Q.appendleft((n, dist + 1))
+    def fire_round(self):
+        tmp_queue = deque()
 
-def escape_J(G, start, exits, distances):
-    visited = dict()
-    queue = deque([(start, 1)])
-    minimum = INF
-    while queue:
-        u, dist = queue.pop()
+        while self.fires:
+            y, x = self.fires.pop()
+            if x > 0 and self.ok_move(y, x - 1): # left
+                self.visited[y][x - 1] = True
+                tmp_queue.appendleft((y, x - 1))
 
-        if u in visited:
-            continue
+            if x < self.c - 1 and self.ok_move(y, x + 1): # right
+                self.visited[y][x + 1] = True
+                tmp_queue.appendleft((y, x + 1))
 
-        if u in exits:
-            if u not in distances:
-                distances[u] = dist
-                minimum = dist
-            elif distances[u] > dist:
-                distances[u] = dist
-                minimum = dist
-                continue
+            if y > 0 and self.ok_move(y - 1, x): # up
+                self.visited[y - 1][x] = True
+                tmp_queue.appendleft((y - 1, x))
 
-        visited[u] = 1
-        for n in G[u]:
-            if n not in visited:
-                queue.appendleft((n, dist + 1))
+            if y < self.r - 1 and self.ok_move(y + 1, x): # down
+                self.visited[y + 1][x] = True
+                tmp_queue.appendleft((y + 1, x))
 
-    return minimum
-
-def is_exit(x, y, w, h):
-    return x == 0 or x == w-1 or y == 0 or y == h-1
-
-def construct_graph()
+        self.fires = tmp_queue
 
 
-def add_neighbours(G, i, w, h, M, fires, exits):
-    global start_index
-    '''
-    Setup graph with correct neighbours
-    '''
-    y, x = i // w, i % w
-    curr = M[y][x]
+    def simulate(self):
+        if self.is_exit(self.joe_start[0], self.joe_start[1]):
+            return 1
 
-    if curr == WALL:
-        return
+        time = 1
+        while self.joe:
 
-    if curr == FIRE:
-        fires.add(i)
+            self.fire_round()
+            curr = self.joe_round()
+            time += 1
+            if curr:
+                return time # Reached an exit
 
-    if curr == SPACE or curr == START:
-        if is_exit(x, y, w, h):
-            exits.add(i)
 
-    n = []
-    if x > 0 and M[y][x - 1] != WALL: # Left neighbour
-        n.append(i - 1)
-
-    if (x < w - 1) and M[y][x + 1] != WALL: # Right neighbour
-        n.append(i + 1)
-
-    if y > 0 and M[y - 1][x] != WALL: # Neighbour up
-        n.append(i - w)
-
-    if y < h - 1 and M[y + 1][x] != WALL: # Neighbour down
-        n.append(i + w)
-
-    if curr == START:
-        start_index = i
-
-    G[i] = n
+        return "IMPOSSIBLE" # Impossible, didn't reach exit
 
 
 def main():
-    h, w = map(int, input().split())
-    m = []
-    for i in range(h): # If I do a BFS here and construct the graph as I go that would be faster
-        m.append(input())
-
-    G = defaultdict(list)
-    fires = set()
-    exits = set()
-    for i in range(w*h):  # O(N^2)
-        add_neighbours(G, i, w, h, m, fires, exits)
-
-    if not exits: # No exits present
-        print(no)
-        return
-    elif start_index in exits: # Edge case if START is one of the exits
-        print(1)
-        return
-
-    # print(fires)
-    # print("start: {}, exits:{}, in exits: {}".format(start_index, exits, start_index in exits))
-
-    d1 = dict()
-    for f in fires: #O(N * (V+E))
-        escape_dists_fire(G, f, exits, d1)
-
-    minimum = escape_J(G, start_index, exits, d1)
-    if minimum == INF:
-        print(no)
-    else:
-        print(minimum)
-
+    r, c = map(int, input().split())
+    matrix = [input() for _ in range(r)]
+    G = Graph(r, c, matrix)
+    print(G.simulate())
 
 if __name__ == "__main__":
     main()
