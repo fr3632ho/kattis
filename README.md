@@ -1,11 +1,11 @@
 #### Information
 | Problems                                                                                     | Description |
 | ---------------------------------------------------------------------------------------------| ----------- |
-| [10 kinds of people](https://open.kattis.com/problems/10kindsofpeople)                       |     Pathfinding problem which can be solved using the union find datastructure.  [python](https://github.com/fr3632ho/kattis/blob/master/10-kinds-of-people/10_kinds_of_people.py).        |
+| [10 kinds of people](https://open.kattis.com/problems/10kindsofpeople)                       |Pathfinding problem which can be solved using the union find datastructure.  [python](https://github.com/fr3632ho/kattis/blob/master/10-kinds-of-people/10_kinds_of_people.py).        |
 | [Add 'Em Up!](https://open.kattis.com/problems/addemup)                                      |             |
 | [Adjoin the Networks](https://open.kattis.com/problems/adjoin)                               |             |
 | [Airconditioned Minions](https://open.kattis.com/problems/airconditioned)                    |             |
-| [All Pairs Shortest Path](https://open.kattis.com/problems/allpairspath)                     |             |
+| [All Pairs Shortest Path](https://open.kattis.com/problems/allpairspath)                     |Given a graph *G(V, E)* determine the shortest path between every pair of vertices present in the graph. Implementation is based on [Floyd-Warshall Algortihm](https://brilliant.org/wiki/floyd-warshall-algorithm) which is similar to that of Bellman-Ford or Dijkstra (which are single source shortest path). [python](https://github.com/fr3632ho/kattis/blob/master/all-pairs-path/all_pairs_path.py), [java](https://github.com/fr3632ho/kattis/blob/master/all-pairs-path/AllPairsPath.java).             |
 | [Almost Perfect](https://open.kattis.com/problems/almostperfect)                             |             |
 | [Arithmetic](https://open.kattis.com/problems/arithmetic)                                    |             |
 | [Bank Queue](https://open.kattis.com/problems/bank)                                          |             |
