@@ -1,7 +1,7 @@
 #### Information
-| Problems | Description |
-| ----------------------| ----------- |
-| [10 kinds of people](https://open.kattis.com/problems/10kindsofpeople)                       |             |
+| Problems                                                                                     | Description |
+| ---------------------------------------------------------------------------------------------| ----------- |
+| [10 kinds of people](https://open.kattis.com/problems/10kindsofpeople)                       |     Pathfinding problem which can be solved using the union find datastructure.  [python](https://github.com/fr3632ho/kattis/blob/master/10-kinds-of-people/10_kinds_of_people.py).        |
 | [Add 'Em Up!](https://open.kattis.com/problems/addemup)                                      |             |
 | [Adjoin the Networks](https://open.kattis.com/problems/adjoin)                               |             |
 | [Airconditioned Minions](https://open.kattis.com/problems/airconditioned)                    |             |
