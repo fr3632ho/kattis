@@ -23,9 +23,9 @@
 | [Minimum Scalar Product](https://open.kattis.com/problems/minimumscalar)                     |             |
 | [Prime sieve](https://open.kattis.com/problems/primesieve)                                   |             |
 | [Pripreme](https://open.kattis.com/problems/pripreme)                                        |             |
-| [Single Source Shortest Path - Negative\](https://open.kattis.com/problems/shortestpath3)     |             |
-| [Single Source Shortest Path - Non Negative\](https://open.kattis.com/problems/shortestpath1) |             |
-| [Single Source Shortest Path - Time Table\](https://open.kattis.com/problems/shortestpath2)   |             |
+| [Single Source Shortest Path - Negative](https://open.kattis.com/problems/shortestpath3)     |             |
+| [Single Source Shortest Path - Non Negative](https://open.kattis.com/problems/shortestpath1) |             |
+| [Single Source Shortest Path - Time Table](https://open.kattis.com/problems/shortestpath2)   |             |
 | [Union Find](https://open.kattis.com/problems/unionfind)                                     |             |
 | [Virtual Friends](https://open.kattis.com/problems/virtualfriends)                           |             |
 | [Wood Cutting](https://open.kattis.com/problems/woodcutting) 
