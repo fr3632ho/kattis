@@ -4,31 +4,31 @@
 | [10 kinds of people](https://open.kattis.com/problems/10kindsofpeople)                       |             |
 | [Add 'Em Up!](https://open.kattis.com/problems/addemup)                                      |             |
 | [Adjoin the Networks](https://open.kattis.com/problems/adjoin)                               |             |
-| \[Airconditioned Minions](https://open.kattis.com/problems/airconditioned)                    |             |
-| \[All Pairs Shortest Path\](https://open.kattis.com/problems/allpairspath)                     |             |
-| \[Almost Perfect\](https://open.kattis.com/problems/almostperfect)                             |             |
-| \[Arithmetic\](https://open.kattis.com/problems/arithmetic)                                    |             |
-| \[Bank Queue\](https://open.kattis.com/problems/bank)                                          |             |
-| \[Bus Numbers\](https://open.kattis.com/problems/busnumbers2)                                  |             |
-| \[Buying Coke\](https://github.com/fr3632ho/kattis/blob/master/buying-coke/buying\_coke.py)    |             |
-| \[Coastal Length\](https://open.kattis.com/problems/coast)                                     |             |
-| \[Counting Stars\](https://open.kattis.com/problems/countingstars)                             |             |
-| \[Dominoes 2\](https://open.kattis.com/problems/dominoes2)                                     |             |
-| \[Fire!\](https://open.kattis.com/problems/fire3)                                              |             |
-| \[Fire\](https://open.kattis.com/problems/fire2)                                               |             |
-| \[Grid\](https://open.kattis.com/problems/grid)                                                |             |
-| \[Horror List\](https://open.kattis.com/problems/horror)                                       |             |
-| \[List Game\](https://open.kattis.com/problems/listgame)                                       |             |
-| \[Mandlebrot\](https://open.kattis.com/problems/mandelbrot)                                    |             |
-| \[Minimum Scalar Product\](https://open.kattis.com/problems/minimumscalar)                     |             |
-| \[Prime sieve\](https://open.kattis.com/problems/primesieve)                                   |             |
-| \[Pripreme\](https://open.kattis.com/problems/pripreme)                                        |             |
-| \[Single Source Shortest Path - Negative\](https://open.kattis.com/problems/shortestpath3)     |             |
-| \[Single Source Shortest Path - Non Negative\](https://open.kattis.com/problems/shortestpath1) |             |
-| \[Single Source Shortest Path - Time Table\](https://open.kattis.com/problems/shortestpath2)   |             |
-| \[Union Find\](https://open.kattis.com/problems/unionfind)                                     |             |
-| \[Virtual Friends\](https://open.kattis.com/problems/virtualfriends)                           |             |
-| \[Wood Cutting\](https://open.kattis.com/problems/woodcutting) 
+| [Airconditioned Minions](https://open.kattis.com/problems/airconditioned)                    |             |
+| [All Pairs Shortest Path](https://open.kattis.com/problems/allpairspath)                     |             |
+| [Almost Perfect](https://open.kattis.com/problems/almostperfect)                             |             |
+| [Arithmetic](https://open.kattis.com/problems/arithmetic)                                    |             |
+| [Bank Queue](https://open.kattis.com/problems/bank)                                          |             |
+| [Bus Numbers](https://open.kattis.com/problems/busnumbers2)                                  |             |
+| [Buying Coke](https://github.com/fr3632ho/kattis/blob/master/buying-coke/buying\_coke.py)    |             |
+| [Coastal Length](https://open.kattis.com/problems/coast)                                     |             |
+| [Counting Stars](https://open.kattis.com/problems/countingstars)                             |             |
+| [Dominoes 2](https://open.kattis.com/problems/dominoes2)                                     |             |
+| [Fire!](https://open.kattis.com/problems/fire3)                                              |             |
+| [Fire](https://open.kattis.com/problems/fire2)                                               |             |
+| [Grid](https://open.kattis.com/problems/grid)                                                |             |
+| [Horror List](https://open.kattis.com/problems/horror)                                       |             |
+| [List Game](https://open.kattis.com/problems/listgame)                                       |             |
+| [Mandlebrot](https://open.kattis.com/problems/mandelbrot)                                    |             |
+| [Minimum Scalar Product](https://open.kattis.com/problems/minimumscalar)                     |             |
+| [Prime sieve](https://open.kattis.com/problems/primesieve)                                   |             |
+| [Pripreme](https://open.kattis.com/problems/pripreme)                                        |             |
+| [Single Source Shortest Path - Negative\](https://open.kattis.com/problems/shortestpath3)     |             |
+| [Single Source Shortest Path - Non Negative\](https://open.kattis.com/problems/shortestpath1) |             |
+| [Single Source Shortest Path - Time Table\](https://open.kattis.com/problems/shortestpath2)   |             |
+| [Union Find](https://open.kattis.com/problems/unionfind)                                     |             |
+| [Virtual Friends](https://open.kattis.com/problems/virtualfriends)                           |             |
+| [Wood Cutting](https://open.kattis.com/problems/woodcutting) 
 
 
 
