@@ -1,7 +1,7 @@
 #### Information
 | Problems                                                                                       | Description |
 | ---------------------------------------------------------------------------------------------- | ----------- |
-| \[10 kinds of people\](https://open.kattis.com/problems/10kindsofpeople)                       |             |
+| [10 kinds of people\](https://open.kattis.com/problems/10kindsofpeople)                       |             |
 | \[Add 'Em Up!\](https://open.kattis.com/problems/addemup)                                      |             |
 | \[Adjoin the Networks\](https://open.kattis.com/problems/adjoin)                               |             |
 | \[Airconditioned Minions\](https://open.kattis.com/problems/airconditioned)                    |             |
