@@ -1,73 +1,61 @@
 import sys
-from collections import deque
+from collections import defaultdict, deque
+from heapq import heappush, heappop
 
-'''Implementation of the push-relabel algorithm,
-(Goldberg-Tarjan's Maximum flow).
-'''
+def bfs(graph, s, t, parents):
+    Q = deque([(s, sys.maxsize)]) # BFS PART OF THE ALGORITHM
+    while Q:
+        u, curr_flow = Q.popleft()
+        for n in graph[u].keys():
+            if parents[n] == -1 and graph[u][n] > 0: # Capacity greater than 0
+                parents[n] = u
+                new_flow = min(graph[u][n], curr_flow)
+                if n == t:
+                    return new_flow # augmented path found
+                Q.append((n, new_flow))
+    return 0
 
-def push(C, excess_edges, excess, flow, u, v):
-    d = min(excess[u], C[u][v] - flow[u][v]) # Push the maximum available flow
-    excess[u] -= d
-    excess[v] += d
-    flow[u][v] += d
-    flow[v][u] -= d
-    if d and excess[v] == d:
-        excess_edges.push
+def karp(graph, s, t):
+    global N
+    flow = 0
+    while True:
+        parents = [-1]*N
+        df = bfs(graph, s, t, parents)
+        if df == 0:
+            break
+        flow += df
+        cur = t
+        while cur != s:
+            prev = parents[cur]
+            graph[cur][prev] += df
+            graph[prev][cur] -= df
+            cur = prev
 
+    return flow
 
-
-def relabel(u):
-    pass
-
-def discharge(u):
-    pass
-
-def max_flow():
-    pass
-
-def add_edges(edges, capacities, u, v, c):
-    if capacities[u][v]:
-        edges.append((u, v))
-        capacities[u][v] += c
+# Capacity can be 2**31 => must optimize flow faster
+N, M, s, t = map(int, input().split())
+graph = defaultdict(dict)
+edges = defaultdict(int) # Need to keep track of all addeed edges even if multiple are between the same vertices
+for _ in range(M):
+    u, v, c = map(int, input().split())
+    if v in graph[u]:
+        graph[u][v] += c
+        graph[v][u] += 0
     else:
-        capacities[u][v] = c
+        graph[u][v] = c
+        graph[v][u] = 0
 
-def pretty_print(M):
-    print()
-    for row in M:
-        print(row)
-    print()
+    edges[(u, v)] += c
 
-def main():
-    n, m, s, t = map(int, sys.stdin.readline().split())
+max_flow = karp(graph, s, t)
+used = []
+for k, val in edges.items():
+    u, v = k
+    if graph[u][v] != val:
+        heappush(used, "{} {} {}".format(u, v, graph[v][u]))
 
-    print('source: {}, sink: {}\nn: {}, m: {}\n'.format(s, t, n, m))
+print("{} {} {}".format(N, max_flow, len(used)))
 
-    # Capacities
-    capacities = [[0 for _ in range(n)] for _ in range(n)]
-    flow = [[0 for _ in range(n)] for _ in range(n)]
-    edge_list = []
-    excess = [0 for _ in range(n)]
-
-    # Edges
-    for e in range(m):
-        u, v, c = map(int, sys.stdin.readline().split())
-        print('%d --(%d)--> %d' % (u, c, v))
-        add_edges(capacities, edge_list, excess, u, v, c)
-
-    pretty_print(capacities)
-
-
-
-
-
-
-
-
-
-
-
-
-
-if __name__ == "__main__":
-    main()
+while used:
+    print(heappop(used))
