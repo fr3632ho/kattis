@@ -39,8 +39,11 @@ graph = defaultdict(dict)
 edges = defaultdict(int) # Need to keep track of all addeed edges even if multiple are between the same vertices
 for _ in range(M):
     u, v, c = map(int, input().split())
-    if v in graph[u]:
+    if (u, v) in edges:
         graph[u][v] += c
+        graph[v][u] += 0
+    elif (v, u) in edges:
+        graph[u][v] = c
         graph[v][u] += 0
     else:
         graph[u][v] = c
