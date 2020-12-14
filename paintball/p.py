@@ -5,7 +5,7 @@ def dfs(visited, n):
     for i in G[n]:
         if not visited[i]:
             visited[i] = True
-            if match[i] == -1 or dfs(visited, target[i]):
+            if target[i] == -1 or dfs(visited, target[i]):
                 target[n] = i
                 match[i] = n
                 return True
