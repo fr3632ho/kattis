@@ -6,8 +6,8 @@ def dfs(visited, n):
         if not visited[i]:
             visited[i] = True
             if target[i] == -1 or dfs(visited, target[i]):
-                target[n] = i
-                match[i] = n
+                target[i] = n
+                match[n] = i
                 return True
 
     return False
