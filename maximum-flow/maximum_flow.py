@@ -1,6 +1,7 @@
 import sys
 from collections import defaultdict, deque
 from heapq import heappush, heappop
+from copy import deepcopy
 
 def bfs(graph, s, t, parents):
     Q = deque([(s, sys.maxsize)]) # BFS PART OF THE ALGORITHM
@@ -34,11 +35,11 @@ def karp(graph, s, t):
     return flow
 
 # Capacity can be 2**31 => must optimize flow faster
-N, M, s, t = map(int, input().split())
+N, M, s, t = map(int, raw_input().split())
 graph = defaultdict(dict)
 edges = defaultdict(int) # Need to keep track of all addeed edges even if multiple are between the same vertices
 for _ in range(M):
-    u, v, c = map(int, input().split())
+    u, v, c = map(int, raw_input().split())
     if (u, v) in edges:
         graph[u][v] += c
         graph[v][u] += 0
@@ -51,14 +52,16 @@ for _ in range(M):
 
     edges[(u, v)] += c
 
+
+#res_graph = deepcopy(graph)
 max_flow = karp(graph, s, t)
 used = []
 for k, val in edges.items():
     u, v = k
-    if graph[u][v] != val:
+    if graph[u][v] < val:
         heappush(used, "{} {} {}".format(u, v, graph[v][u]))
 
-print("{} {} {}".format(N, max_flow, len(used)))
+print N, max_flow, len(used)
 
 while used:
-    print(heappop(used))
+    print heappop(used)
