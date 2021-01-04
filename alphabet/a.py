@@ -11,5 +11,5 @@ def process(s1, s2):
 
 
 alphabet = "abcdefghijklmnopqrstuvw"
-s = list(raw_input())
-print 26 - process(alphabet, s)
+s = raw_input().strip()
+print 26 - process(s, alphabet)
