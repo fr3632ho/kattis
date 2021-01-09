@@ -9,13 +9,14 @@ def two_points_to_line(p1, p2):
     return (y2-y1,x1-x2,x2*y1-y2*x1)
 
 def dist(a, b):
-    return ( (a[0]-b[0])**2 + (a[1]-b[1])**2 )**0.5
+    return ((a[0]-b[0])**2 + (a[1]-b[1])**2)**0.5
 
 def point_projection(line ,p):
     a,b,c=line
     x,y=p
-    return ((b*(b*x-a*y)-a*c)/(a**2+b**2),
-            (a*(-b*x+a*y)-b*c)/(a**2+b**2))
+    sq = (a**2 + b**2)*1.0
+    return ((b*(b*x-a*y)-a*c)/sq,
+            (a*(-b*x+a*y)-b*c)/sq)
 
 def dist_to_line(p, line):
     p2 = point_projection(line, p)
@@ -34,6 +35,7 @@ for _ in range(n):
         x, y = int(x), int(y)
         d[(x, y)] = c
         distance = dist_to_line((x, y), line)
+        print distance, c
         curr = min(curr, distance)
         m.append(((x, y), distance))
 
