@@ -35,7 +35,7 @@ for _ in range(n):
         x, y = int(x), int(y)
         d[(x, y)] = c
         distance = dist_to_line((x, y), line)
-        print distance, c
+        #print distance, c
         curr = min(curr, distance)
         m.append(((x, y), distance))
 
