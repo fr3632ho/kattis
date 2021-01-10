@@ -44,7 +44,6 @@ float distance_to_line(lkoef l, city p) {
   return a/b;
 }
 
-
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
@@ -69,7 +68,6 @@ int main() {
     }
 
     for (int i=0; i<ans.size();i++){
-      //cout << ans[i].name << " " << mindist << " " << ans[i].dist << " " << endl;
       if(ans[i].dist == mindist){
         cout << ans[i].name << " ";
       }
