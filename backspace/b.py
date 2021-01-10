@@ -1,8 +1,6 @@
-
 words = raw_input()
 out = list(words)
 n = len(words)
-
 i = j = 0
 while i<n:
     curr = words[i]
