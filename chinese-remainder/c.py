@@ -13,7 +13,6 @@ this gives us x = anx + bmy by use of the extendend euclidian algorithm
 def mod_inv(a, b):
     b0 = b
     x, y = 1, 0
-
     if b == 0: return 0
 
     while a > 1:
