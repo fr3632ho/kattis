@@ -1,68 +1,71 @@
-from collections import defaultdict
+from collections import defaultdict, deque
 from heapq import heappush, heappop
 
 inf = 10**10
-def dijkstra(G,w):
+TAR = 1
+def dijk1(G):
+    # should return a dist list
+    dist = [inf for _ in range(n)]
+    dist[1] = 0
     visited = set()
-    queue = [(0,0,0)]
-    parents = [i for i in range(n)]
-    dist = [0 for _ in range(n)]
-    dist[0] = 0
+    queue = [(dist[1], 1)]
     while queue:
-        d, node, p = heappop(queue)
-        d *=-1
+        d, node = heappop(queue)
         if node in visited:
             continue
-        parents[node]=p
         visited.add(node)
-        for vi in G[node]:
-            alt = d + w[node][vi]
-            if vi not in visited and (w[node][vi] < inf and alt > dist[vi]):
-                dist[vi] = alt
-                heappush(queue, (-alt,vi, node))
-    if 1 not in visited:
-        return  [], -1
-    p = [1]
-    parents[0] = -1
-    prev = parents[1]
-    d = 0
-    j = 1
-    while prev != -1:
-        p.append(prev)
-        d += w[p[j]][p[j-1]]
-        j+=1
-        prev = parents[prev]
-    return p[::-1],d
+        for v, w in G[node]:
+            if v not in visited:
+                alt = d + w
+                if alt < dist[v]:
+                    dist[v] = alt
+                    heappush(queue, (alt, v))
+    return dist
 
 n,m = map(int, raw_input().split())
-g = defaultdict(set)
-w = [[-1 for i in range(n)] for j in range(n)]
+g = defaultdict(list)
+edges = []
 for i in range(m):
     ai,bi,weight = map(int, raw_input().split())
-    w[ai][bi] = weight
-    w[bi][ai] = weight
-    g[ai].add(bi)
-    g[bi].add(ai)
+    #print ai, bi, weight
+    g[ai].append((bi, weight))
+    g[bi].append((ai, weight))
+    edges.append((ai,bi,weight))
 
-path, distance = dijkstra(g,w) # this is guaranteed
-# Perform Yen's Algorithm
-A = [(path,distance)]
-for k in range(1,n):
-    curr_weight = -1
-    curr_path = A[-1][0]
-    min_path = (curr_path, A[-1][1])
-    for i in range(1, len(curr_path)):
-        curr_weight = w[path[i-1]][path[i]]
-        w[curr_path[i-1]][curr_path[i]] = inf
-        p2, d2 = dijkstra(g,w)
-        w[path[i-1]][path[i]] = curr_weight
-        if min_path[1] > d2:
-            min_path = (p2,d2)
-        if 0<= d2 < distance:
-            print len(path), " ".join(str(i) for i in path)
-            exit(0)
-    if min_path == A[-1]:
-        break
-    A.append(min_path)
+dist = dijk1(g)
+g2 = defaultdict(list)
+for u, v,w in edges:
+    if dist[u] + w == dist[v]: continue
+    g2[v].append(u)
 
-print "impossible"
+for u,v,w in edges:
+    if dist[v] + w == dist[u]: continue
+    g2[u].append(v)
+
+# for k, v in g2.items():
+#     print k, v
+
+parents = [i for i in range(n)]
+parents[0] = -1
+visited = set([0])
+Q = deque([0])
+while Q:
+    node = Q.popleft()
+
+    for v in g2[node]:
+        if v not in visited:
+            visited.add(v)
+            parents[v] = node
+            Q.append(v)
+#print parents, "...."
+if parents[1]==1 or len(g2[0]) < 1:
+    print "impossible"
+    exit(0)
+
+
+out = [str(TAR)]
+prev = parents[TAR]
+while parents[prev] != -1:
+    out.append(str(prev))
+    prev = parents[prev]
+print len(out)+1,0, " ".join(out[::-1])
