@@ -1,12 +1,10 @@
 from heapq import heappush, heappop
-
 def union(x,y,parents):
     a, b = find(x,parents), find(y, parents)
     if a==b: return False
     if a>b: a,b=b,a
     parents[a] = b
     return True
-
 def find(x, parents):
     root = x
     while parents[root] != -1: root = parents[root]
