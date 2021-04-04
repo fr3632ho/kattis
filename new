@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PY_TEMPLATE="./template_files/template.py"
+CPP_TEMPLATE="./template_files/template.cpp"
+DIR=$1
+py_file="./$DIR/a.py"
+cpp_file="./$DIR/sol.cpp"
+
+mkdir $DIR
+echo "New problem directory: $1"
+
+touch $py_file
+touch $cpp_file
+cat $PY_TEMPLATE >> $py_file
+cat $CPP_TEMPLATE >> $cpp_file
+echo "Template files created"
