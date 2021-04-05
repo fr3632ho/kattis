@@ -49,7 +49,6 @@ for _ in range(M):
     else:
         graph[u][v] = c
         graph[v][u] = 0
-
     edges[(u, v)] += c
 
 
