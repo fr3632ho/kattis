@@ -34,11 +34,6 @@ for idx, (_, r) in enumerate(pos):
 for idx, (_, r) in enumerate(reversed(neg)):
     indx_dict[r] = -(idx + 1)
 
-# for k, v in indx_dict.items():
-#     print(k, v)
-
-print(m_pos , m_neg)
-
 n = int(input())
 for _ in range(n):
     i = int(input())    
@@ -47,10 +42,10 @@ for _ in range(n):
         out = indx_dict['M']
     else:        
         r = i%1000                
+        q = i//1000
         if r == 0:
-            continue
+            out = indx_dict['M'] * q
         else:            
-            q = i//1000
             num = int_to_roman(r)
             r_num = indx_dict[num]                                    
             if r_num < 0:
