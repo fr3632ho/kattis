@@ -61,3 +61,23 @@ for i in sys.stdin:
             print("yes")
         else:
             print("no")
+
+
+
+parents = [-1] * 3000
+size = [1] * 3000
+
+def union(u, v):
+    a, b = find(u), find(v)
+
+    # ...
+    # a == b
+    # size(a) > size(b)
+    # size[a] += size[b]
+
+
+def find(u):
+    a = u
+    while parents[a] != -1:
+        a = parents[a]
+    

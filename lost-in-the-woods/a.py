@@ -31,7 +31,7 @@ for i in range(iterations):
     start_node = start
     while start_node != end:                
         nxt = r.randint(0, len(graph[start_node]) - 1)
-        tot += 1        
+        tot += 1               
         start_node = graph[start_node][nxt]    
 
-print(tot / iterations)
+print(tot / (iterations))
