@@ -6,41 +6,28 @@ import sys
 itr = (line for line in sys.stdin.read().split('\n')) # buffer
 inp = lambda: next(itr) # next iter
 def ni(): return int(inp())
-def nl_2(): return list(inp())
-def nl(): return [int(tok) for tok in inp().split()]
+def ns(): return str(inp())
 
 n = ni()
-xs = [[False]*n for _ in range(n)]
-losses = [0 for _ in range(n)]
+outdeg = [0]*n
 for i in range(n-1):
-    l = [bool(int(k)) for k in nl_2()]
-    for j in range(i+1):
-        xs[i+1][j] = l[j]
-        xs[j][i+1] = not l[j]
-        losses[i+1] += not l[j]
-        losses[j] += l[j] 
+    l = list(ns())
+    for j in range(i + 1):
+        if l[j] == '1':
+            outdeg[i+1] += 1
+        else:
+            outdeg[j] += 1
 
-from heapq import heappop, heappush, heapify
-queue = [(loss, i) for i, loss in enumerate(losses)]
-heapify(queue)
-for row in xs:
-    print(row)
-print(losses, queue)
-k = 0
-vis = set()
-while queue:
-    loss, node = heappop(queue)
-    if node in vis:
-        continue
-    k = max(k, loss)
-    vis.add(node)
-    for j in range(n):
-        if j == node or j in vis:
-            continue
-        if xs[node][j]:
-            losses[j] -= 1
-            heappush(queue, (losses[j], node))    
-print(k)    
+ordered = sorted(range(n), key=lambda i : -outdeg[i]) # sorted by maximum outdegree
 
+number_of_edges = n * (n - 1) // 2
+max_k = 0
+for i, v in enumerate(ordered):
+    number_of_edges -= outdeg[v]
+    cut_size = number_of_edges - (n-i-1) * (n - i - 2)//2
+    max_k = max(max_k, cut_size)
 
+print(max_k)
 
+# We are given a complete undirected graph, i.e. n(n-1)/2 undirected edges
+# which we then direct, creating a tournament (complete directed graph)
